@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Zelo — DM Intelligence for Setter Teams</title>
+<meta name="description" content="Zelo turns your setter team's Instagram conversations into structured pipeline data, objection clusters, content signals, and guided replies — so you close more of the leads you're already talking to."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#05080f;--bg2:#090d1c;--bg3:#0d1226;
+  --s:rgba(255,255,255,.04);--s2:rgba(255,255,255,.07);--s3:rgba(255,255,255,.11);
+  --b:rgba(255,255,255,.08);--b2:rgba(255,255,255,.14);
+  --t:#eef2ff;--t2:rgba(238,242,255,.68);--t3:rgba(238,242,255,.38);
+  --green:#00ff88;--gd:rgba(0,255,136,.1);--gb:rgba(0,255,136,.18);
+  --blue:#5b9cf6;--bd:rgba(91,156,246,.12);
+  --orange:#ff9f0a;--od:rgba(255,159,10,.12);
+  --red:#ff453a;--rd:rgba(255,69,58,.12);
+  --purple:#bf5af2;--pd:rgba(191,90,242,.12);
+  --r:22px;--max:1160px;
+  --shadow:0 28px 80px rgba(0,0,0,.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',system-ui,-apple-system,sans-serif;
+  background:radial-gradient(ellipse 80% 40% at 20% -10%,rgba(0,255,136,.07),transparent),
+             radial-gradient(ellipse 60% 40% at 85% 8%,rgba(91,156,246,.07),transparent),
+             var(--bg);
+  color:var(--t);overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;opacity:.4;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+}
+a{color:inherit;text-decoration:none}
+button,input,textarea{font:inherit;border:0;background:none}
+.wrap{position:relative;z-index:1}
+.container{width:min(var(--max),calc(100% - 48px));margin:0 auto}
+.section{padding:108px 0}
+.card{
+  background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));
+  border:1px solid var(--b);border-radius:var(--r);
+  box-shadow:var(--shadow);backdrop-filter:blur(24px);
+}
+.brig{font-family:'Bricolage Grotesque',sans-serif}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:7px 14px;border-radius:999px;
+  background:var(--gd);color:var(--green);
+  border:1px solid var(--gb);
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;
+}
+.dot{width:7px;height:7px;border-radius:999px;background:var(--green);box-shadow:0 0 8px rgba(0,255,136,.9);animation:blink 2.5s ease-in-out infinite;flex:none}
+@keyframes blink{50%{opacity:.3}}
+.section-head{max-width:780px;margin-bottom:40px}
+.section-head.centered{text-align:center;margin:0 auto 40px}
+.section-head.centered p{margin:0 auto}
+.section-head h2{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(30px,4vw,52px);font-weight:800;line-height:1.05;letter-spacing:-.04em;margin:14px 0 14px}
+.section-head h2 em{font-style:italic;color:var(--green)}
+.section-head p{font-size:17px;line-height:1.8;color:var(--t2);max-width:680px}
+.muted{color:var(--t2)}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .58s ease,transform .58s ease}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}.d5{transition-delay:.40s}
+.btn{border:0;cursor:pointer;padding:14px 22px;border-radius:999px;font-family:'Bricolage Grotesque',sans-serif;font-size:14px;font-weight:700;letter-spacing:.01em;display:inline-flex;align-items:center;justify-content:center;gap:9px;transition:.2s transform,.2s box-shadow,.2s filter,.2s background,.2s border-color;will-change:transform}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--green);color:#05080f;box-shadow:0 14px 32px rgba(0,255,136,.2)}
+.btn-primary:hover{filter:brightness(1.06);box-shadow:0 18px 44px rgba(0,255,136,.28)}
+.btn-sec{background:transparent;color:var(--t);border:1px solid var(--b2)}
+.btn-sec:hover{background:var(--s2)}
+.btn-ghost{background:var(--s);border:1px solid var(--b);color:var(--t2)}
+.btn-ghost:hover{background:var(--s2);color:var(--t)}
+/* BUTTON LIGHT SWEEP */
+.btn{position:relative;overflow:hidden}
+.btn::after{content:'';position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);transform:skewX(-18deg);pointer-events:none;opacity:0;transition:opacity .15s}
+.btn:hover::after{opacity:1;animation:btnSweep .55s ease forwards}
+.btn.swept::after{opacity:1;animation:btnSweepClick .38s ease forwards}
+@keyframes btnSweep{0%{left:-80%}100%{left:130%}}
+@keyframes btnSweepClick{0%{left:-80%;opacity:1}70%{left:130%;opacity:1}100%{left:130%;opacity:0}}
+/* hover glow track — JS sets --mx */
+.btn::before{content:'';position:absolute;inset:0;background:radial-gradient(circle 60px at var(--mx,50%) 50%,rgba(255,255,255,.1),transparent 70%);opacity:0;transition:opacity .2s;pointer-events:none;border-radius:inherit}
+.btn:hover::before{opacity:1}
+.btn-sm{padding:10px 16px;font-size:13px}
+.btn-lg{padding:17px 28px;font-size:16px}
+.btn-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:40;border-bottom:1px solid rgba(255,255,255,.06);background:rgba(5,8,15,.72);backdrop-filter:blur(28px);transition:opacity .32s ease,transform .36s cubic-bezier(.4,0,.2,1),border-color .32s}
+.nav.scrolled{background:rgba(5,8,15,.93)}
+.nav-inner{width:min(var(--max),calc(100% - 28px));margin:0 auto;height:72px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-mark{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(0,255,136,.2),rgba(91,156,246,.18));border:1px solid rgba(0,255,136,.2);font-family:'Bricolage Grotesque',sans-serif;font-weight:900;font-size:17px;color:var(--green)}
+.brand-text strong{font-family:'Bricolage Grotesque',sans-serif;font-size:15px;font-weight:800}
+.brand-text span{display:block;font-size:10px;color:var(--t3);letter-spacing:.08em;text-transform:uppercase}
+.nav-links{display:flex;align-items:center;gap:4px;padding:5px;border-radius:999px;border:1px solid var(--b);background:rgba(255,255,255,.025)}
+.nav-item{position:relative}
+.nav-link{height:36px;padding:0 14px;border-radius:999px;border:1px solid transparent;display:inline-flex;align-items:center;gap:7px;color:var(--t2);font-size:13px;font-weight:600;transition:.18s}
+.nav-link:hover,.nav-link.active{color:var(--t);background:rgba(255,255,255,.06)}
+.nav-link svg{width:11px;height:11px;opacity:.7}
+.nav-dropdown{position:absolute;top:46px;left:50%;transform:translateX(-50%) translateY(-5px);width:310px;padding:8px;border-radius:18px;background:rgba(10,13,26,.97);border:1px solid var(--b2);box-shadow:0 24px 52px rgba(0,0,0,.42);opacity:0;pointer-events:none;transition:.18s}
+.nav-item:hover .nav-dropdown{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.drop-item{display:flex;gap:12px;align-items:flex-start;padding:11px;border-radius:12px;transition:.15s}
+.drop-item:hover{background:rgba(255,255,255,.05)}
+.drop-ico{width:36px;height:36px;border-radius:10px;flex:none;display:grid;place-items:center;background:var(--gd);border:1px solid var(--gb);color:var(--green);font-size:16px}
+.drop-item strong{display:block;font-size:13px;margin-bottom:2px}
+.drop-item span{display:block;font-size:12px;color:var(--t3);line-height:1.5}
+.nav-actions{display:flex;align-items:center;gap:8px}
+.hamburger{display:none;border:0;background:transparent;cursor:pointer;padding:8px}
+.hamburger span{display:block;width:21px;height:2px;border-radius:999px;background:var(--t2);margin:4px 0;transition:.2s}
+.mobile{display:none;position:fixed;inset:72px 0 0 0;z-index:39;background:rgba(5,8,15,.98);padding:16px;overflow:auto}
+.mobile.open{display:block}
+.mobile a,.mobile button{width:100%;text-align:left;display:flex;align-items:center;justify-content:space-between;padding:15px 16px;border-radius:14px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);color:var(--t);font-size:16px;font-weight:700;margin-bottom:8px;transition:.15s}
+.mobile a:hover,.mobile button:hover{background:rgba(255,255,255,.06)}
+.mobile .cta{background:var(--green);color:#05080f;border-color:transparent}
+.sticky-cta{position:fixed;left:12px;right:12px;bottom:12px;z-index:30;display:none;gap:8px;padding:8px;border-radius:22px;background:rgba(5,8,15,.82);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(22px);box-shadow:0 20px 50px rgba(0,0,0,.38)}
+.sticky-cta .btn{flex:1}
+
+/* HERO */
+.hero{padding:96px 0 56px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+.hero-copy h1{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(40px,5.2vw,70px);font-weight:800;line-height:.96;letter-spacing:-.055em;margin:20px 0 20px}
+.hero-copy h1 em{font-style:italic;color:var(--green)}
+.hero-sub{font-size:clamp(16px,1.4vw,18px);line-height:1.8;color:var(--t2);max-width:580px;margin-bottom:26px}
+.hero-sub strong{color:var(--t)}
+.chip-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.chip{padding:8px 12px;border:1px solid var(--b);border-radius:999px;background:var(--s);color:var(--t2);font-size:12px;font-weight:600;backdrop-filter:blur(16px)}
+.hero-proof{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:22px;font-size:14px;color:var(--t2)}
+.faces{display:flex}
+.face{width:34px;height:34px;border-radius:999px;border:2px solid var(--bg);display:grid;place-items:center;font-size:12px;font-weight:900;color:#fff;margin-left:-8px}
+.face:first-child{margin-left:0}
+.f1{background:linear-gradient(135deg,#4a8fd4,#00ff88)}
+.f2{background:linear-gradient(135deg,#bf5af2,#4a8fd4)}
+.f3{background:linear-gradient(135deg,#ff453a,#ff9f0a)}
+.f4{background:linear-gradient(135deg,#00ff88,#5b9cf6)}
+.proof-copy strong{display:block;color:var(--t);margin-bottom:2px}
+
+/* HERO VISUAL */
+.hero-visual{position:relative}
+.glow-blob{position:absolute;border-radius:999px;filter:blur(70px);pointer-events:none}
+.gb1{width:240px;height:240px;background:rgba(0,255,136,.16);top:-24px;right:5%;opacity:.8}
+.gb2{width:260px;height:260px;background:rgba(91,156,246,.13);bottom:0;left:-24px;opacity:.7}
+.fp{position:absolute;z-index:3;padding:9px 14px;border-radius:999px;background:rgba(5,8,15,.9);border:1px solid rgba(255,255,255,.13);font-family:'Bricolage Grotesque',sans-serif;font-size:12px;font-weight:700;backdrop-filter:blur(20px);box-shadow:0 12px 36px rgba(0,0,0,.28)}
+.fp1{top:-18px;right:-8px;color:var(--green);animation:floatA 5s ease-in-out infinite}
+.fp2{bottom:-18px;left:-6px;color:var(--t);animation:floatB 5.6s ease-in-out infinite}
+@keyframes floatA{50%{transform:translateY(-9px) rotate(1.5deg)}}
+@keyframes floatB{50%{transform:translateY(-7px) rotate(-1.5deg)}}
+.dashboard{position:relative;padding:18px;border-radius:28px;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));border:1px solid rgba(255,255,255,.09);box-shadow:0 32px 90px rgba(0,0,0,.45);overflow:hidden}
+.dashboard::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 0%,rgba(0,255,136,.09),transparent 42%)}
+.dash-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.dash-label{font-family:'Bricolage Grotesque',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--t3)}
+.dash-name{font-family:'Bricolage Grotesque',sans-serif;font-size:18px;font-weight:800;margin-top:2px}
+.live-pill{display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border-radius:999px;background:var(--gd);color:var(--green);border:1px solid var(--gb);font-family:'Bricolage Grotesque',sans-serif;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+.dash-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.dk{padding:13px 10px;border-radius:16px;border:1px solid rgba(255,255,255,.07);background:rgba(5,8,15,.5)}
+.dk .v{font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:900;line-height:1;margin-bottom:5px}
+.dk .l{font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--t3)}
+.dk.g{border-color:rgba(0,255,136,.18)}.dk.g .v{color:var(--green)}
+.dk.b{border-color:rgba(91,156,246,.18)}.dk.b .v{color:var(--blue)}
+.dk.o{border-color:rgba(255,159,10,.18)}.dk.o .v{color:var(--orange)}
+.ai-box{padding:14px;border-radius:18px;background:rgba(5,8,15,.65);border:1px solid rgba(255,255,255,.07)}
+.ai-box-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px;font-family:'Bricolage Grotesque',sans-serif}
+.ai-box-head strong{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--t3)}
+.ai-box-head span{font-size:12px;color:var(--green);font-weight:800}
+.ai-rows{display:grid;gap:7px}
+.ai-row{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:9px 11px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.05);font-size:13px}
+.ai-row b{font-weight:700;font-family:'Bricolage Grotesque',sans-serif}
+.ai-row .good{color:var(--green)}.ai-row .warn{color:var(--orange)}.ai-row .info{color:var(--blue)}.ai-row .red{color:var(--red)}
+
+/* TRUST BAR */
+.trust{margin-top:32px;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.015)}
+.trust-inner{width:min(var(--max),calc(100% - 48px));margin:0 auto;padding:20px 0;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.trust-label{font-family:'Bricolage Grotesque',sans-serif;color:var(--t3);text-transform:uppercase;letter-spacing:.12em;font-size:11px;font-weight:700}
+.trust-list{display:flex;flex-wrap:wrap;gap:8px}
+
+/* WHO IT'S FOR */
+.for-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.for-card{padding:28px 24px;position:relative;overflow:hidden}
+.for-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--green),transparent)}
+.for-card .for-ico{font-size:28px;margin-bottom:14px;display:block}
+.for-card h3{font-family:'Bricolage Grotesque',sans-serif;font-size:17px;font-weight:800;margin-bottom:10px}
+.for-card p{font-size:14px;line-height:1.75;color:var(--t2)}
+
+/* PAIN */
+.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pain{padding:28px;position:relative;overflow:hidden}
+.pain::before{content:'';position:absolute;inset:0 auto auto 0;height:2px;width:100%;background:linear-gradient(90deg,var(--red),transparent)}
+.pain .num{font-family:'Bricolage Grotesque',sans-serif;font-size:48px;line-height:1;color:rgba(255,69,58,.45);font-weight:900;margin-bottom:12px}
+.pain h3{margin:0 0 10px;font-family:'Bricolage Grotesque',sans-serif;font-size:18px;line-height:1.35;font-weight:800}
+.pain p{margin:0;color:var(--t2);line-height:1.75;font-size:14px}
+.pain-cost{display:inline-flex;align-items:center;gap:6px;margin-top:14px;padding:7px 12px;border-radius:8px;background:rgba(255,69,58,.08);border:1px solid rgba(255,69,58,.18);font-size:12px;font-weight:700;color:var(--red);font-family:'Bricolage Grotesque',sans-serif}
+.pain-wave-wrap{position:relative;left:50%;transform:translateX(-50%);width:100vw;height:60px;margin:36px 0 0;overflow:hidden}
+.pain-wave-svg{position:absolute;top:0;left:0;width:200%;height:100%;display:block}
+.pain-wave-track{fill:none;stroke:rgba(255,255,255,.06);stroke-width:1.5}
+.pain-wave-flash{fill:none;stroke:rgba(255,255,255,.15);stroke-width:1.5;stroke-linecap:round;filter:none;animation:waveScroll 3.6s linear infinite;transition:stroke .6s,stroke-width .6s,filter .6s}
+.pain-wave-wrap.wave-hot .pain-wave-flash{stroke:rgba(0,255,136,.9);stroke-width:2.5;filter:drop-shadow(0 0 6px rgba(0,255,136,.9)) drop-shadow(0 0 22px rgba(0,255,136,.5))}
+@keyframes waveScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* COMPETITOR CARD — subtle, faded, forgettable */
+.compare-card.competitor{background:linear-gradient(180deg,rgba(168,85,247,.06),rgba(168,85,247,.02));border-color:rgba(168,85,247,.2)}
+.compare-card.competitor h3{color:var(--t2)}
+.compare-card.competitor .price{color:var(--t2);font-size:26px}
+.compare-card.competitor .eyebrow{background:rgba(168,85,247,.08);color:rgba(168,85,247,.7);border-color:rgba(168,85,247,.2)}
+.compare-card.competitor .sub{color:var(--t3)}
+.compare-card.competitor .citem{color:var(--t3)}
+/* ZELO CARD — the hero */
+.compare-card.zelo-card{background:linear-gradient(150deg,rgba(0,40,24,.95),rgba(0,28,18,.98));border-color:rgba(0,255,136,.5);box-shadow:0 0 0 1px rgba(0,255,136,.2),0 0 60px rgba(0,255,136,.12),var(--shadow)}
+.compare-card.zelo-card h3{color:#fff}
+.compare-card.zelo-card .price{color:var(--green)}
+.compare-card.zelo-card .sub{color:rgba(200,255,230,.75)}
+.compare-card.zelo-card .eyebrow{background:rgba(0,255,136,.12);color:var(--green);border-color:rgba(0,255,136,.25)}
+.compare-card.zelo-card .citem{color:rgba(200,255,230,.85)}
+/* SITE-WIDE GREEN MODE */
+body.green-mode{background:radial-gradient(ellipse 100% 55% at 10% -5%,rgba(0,255,136,.13),transparent),radial-gradient(ellipse 70% 50% at 90% 10%,rgba(0,255,136,.07),transparent),radial-gradient(ellipse 80% 60% at 50% 50%,rgba(0,255,136,.04),transparent),var(--bg);transition:background 1.2s ease}
+body.green-mode::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(0,255,136,.06),transparent);animation:greenPulse 4s ease-in-out infinite}
+@keyframes greenPulse{0%,100%{opacity:.6}50%{opacity:1}}
+
+/* MECHANISM */
+.mechanism{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;align-items:stretch}
+.mechanism .left,.mechanism .right{padding:28px}
+.mechanism .title{font-family:'Bricolage Grotesque',sans-serif;font-size:20px;font-weight:900;margin-bottom:10px}
+.flow{display:grid;gap:12px;margin-top:18px}
+.flow-item{display:flex;gap:14px;align-items:flex-start;padding:16px;border-radius:16px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07)}
+.step-num{width:32px;height:32px;border-radius:10px;flex:none;background:var(--gd);border:1px solid var(--gb);color:var(--green);display:grid;place-items:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:900}
+.flow-item strong{display:block;margin-bottom:4px;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:15px}
+.flow-item p{margin:0;color:var(--t2);font-size:14px;line-height:1.7}
+.right .mini-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.tile{padding:15px;border-radius:16px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07)}
+.tile .t{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--t3);margin-bottom:8px;font-weight:700}
+.tile .v{font-family:'Bricolage Grotesque',sans-serif;font-weight:900;font-size:17px;line-height:1.2}
+.tile .v.g{color:var(--green)}.tile .v.b{color:var(--blue)}.tile .v.o{color:var(--orange)}.tile .v.p{color:var(--purple)}
+.stack{margin-top:12px;padding:16px;border-radius:16px;background:rgba(5,8,15,.55);border:1px solid rgba(255,255,255,.07)}
+.stack-row{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.stack-row:last-child{border-bottom:none}
+.stack-row span{color:var(--t3);font-size:12px;text-transform:uppercase;letter-spacing:.07em}
+.stack-row b{font-size:14px;font-family:'Bricolage Grotesque',sans-serif;font-weight:700}
+.stack-row b.g{color:var(--green)}.stack-row b.o{color:var(--orange)}.stack-row b.b{color:var(--blue)}
+
+/* BENTO */
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.span-4{grid-column:span 4}.span-6{grid-column:span 6}.span-8{grid-column:span 8}.span-12{grid-column:span 12}
+.feature{padding:26px;overflow:hidden;position:relative;min-height:220px}
+.feature h3{margin:14px 0 10px;font-family:'Bricolage Grotesque',sans-serif;font-size:19px;font-weight:800;line-height:1.25}
+.feature p{margin:0;font-size:14px;line-height:1.75;color:var(--t2)}
+.feature .ftag{display:inline-flex;align-items:center;gap:7px;padding:7px 11px;border-radius:999px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--t3)}
+.icon{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:var(--gd);border:1px solid var(--gb);color:var(--green);font-size:20px}
+.icon.b{background:var(--bd);border-color:rgba(91,156,246,.3);color:var(--blue)}
+.icon.o{background:var(--od);border-color:rgba(255,159,10,.3);color:var(--orange)}
+.icon.p{background:var(--pd);border-color:rgba(191,90,242,.3);color:var(--purple)}
+.mock{margin-top:16px;border-radius:14px;border:1px solid rgba(255,255,255,.07);overflow:hidden;background:rgba(5,8,15,.6)}
+.mrow{display:flex;justify-content:space-between;gap:10px;padding:10px 13px;border-bottom:1px solid rgba(255,255,255,.05);font-size:13px;align-items:center}
+.mrow:last-child{border-bottom:none}
+.mrow .k{color:var(--t3);font-size:12px}
+.mrow .v{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:13px}
+.mrow .v.g{color:var(--green)}.mrow .v.b{color:var(--blue)}.mrow .v.o{color:var(--orange)}.mrow .v.r{color:var(--red)}
+
+/* TABS */
+.tabs{display:flex;gap:6px;background:rgba(255,255,255,.04);border:1px solid var(--b);border-radius:999px;padding:5px;width:fit-content;margin-bottom:24px}
+.tab{padding:9px 18px;border-radius:999px;border:1px solid transparent;font-family:'Bricolage Grotesque',sans-serif;font-size:13px;font-weight:700;color:var(--t2);cursor:pointer;transition:.18s}
+.tab.active,.tab:hover{color:var(--t);background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.1)}
+.panel{display:none}
+.panel.active{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.panel-card{padding:26px}
+.steps{display:grid;gap:14px}
+.step-card{display:flex;gap:14px;align-items:flex-start;padding:14px;border-radius:14px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)}
+.step-card h4{font-family:'Bricolage Grotesque',sans-serif;font-size:14px;font-weight:800;margin-bottom:5px}
+.step-card p{font-size:13px;line-height:1.7;color:var(--t2);margin:0}
+.screenbox{padding:20px}
+.scrn-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;gap:10px}
+.sbadge{font-family:'Bricolage Grotesque',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--t3)}
+.slive{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--green)}
+.list{display:grid;gap:8px}
+.litem{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:10px 12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:12px;font-size:13px}
+.litem span{color:var(--t3);font-size:12px}
+.litem b{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:13px}
+.litem b.g{color:var(--green)}.litem b.b{color:var(--blue)}.litem b.o{color:var(--orange)}.litem b.r{color:var(--red)}.litem b.p{color:var(--purple)}
+
+/* ROI */
+.roi{display:grid;grid-template-columns:.8fr 1.2fr;gap:16px}
+.roi-card{padding:30px}
+.roi-card h3{font-family:'Bricolage Grotesque',sans-serif;font-size:24px;font-weight:800;margin-bottom:12px;line-height:1.2}
+.roi-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:24px}
+.roi-stat{padding:18px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07)}
+.roi-stat .v{font-family:'Bricolage Grotesque',sans-serif;font-size:18px;font-weight:900;margin-bottom:5px;line-height:1.1}
+.roi-stat .l{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--t3)}
+.roi-stat.g .v{color:var(--green)}.roi-stat.b .v{color:var(--blue)}.roi-stat.o .v{color:var(--orange)}.roi-stat.p .v{color:var(--purple)}
+.roi-table{width:100%;border-collapse:collapse;font-size:14px}
+.roi-table thead th{padding:10px 14px;background:rgba(255,255,255,.04);text-align:left;font-family:'Bricolage Grotesque',sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--t3);font-weight:700}
+.roi-table thead th:first-child{border-radius:10px 0 0 10px}
+.roi-table thead th:last-child{border-radius:0 10px 10px 0}
+.roi-table tbody tr{border-bottom:1px solid rgba(255,255,255,.05)}
+.roi-table tbody tr:last-child{border-bottom:none}
+.roi-table tbody td{padding:12px 14px;vertical-align:middle;font-size:13px}
+.roi-table tbody tr.big td{font-weight:700;font-family:'Bricolage Grotesque',sans-serif}
+.roi-yes{color:var(--green)}.roi-no{color:var(--t3)}
+.roi-tag{display:inline-block;padding:4px 9px;border-radius:6px;font-size:11px;font-weight:700;font-family:'Bricolage Grotesque',sans-serif;text-transform:uppercase;letter-spacing:.06em}
+.roi-tag.g{background:var(--gd);color:var(--green);border:1px solid var(--gb)}
+.roi-tag.b{background:var(--bd);color:var(--blue);border:1px solid rgba(91,156,246,.3)}
+.roi-tag.o{background:var(--od);color:var(--orange);border:1px solid rgba(255,159,10,.3)}
+.roi-note{margin-top:16px;padding:14px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);font-size:12px;color:var(--t3);line-height:1.7}
+
+/* COMPARE */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.compare-card{padding:30px;position:relative}
+.compare-card.highlight{border-color:rgba(0,255,136,.22);background:linear-gradient(180deg,rgba(0,255,136,.06),rgba(0,255,136,.02))}
+.badge-top{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--green);color:#05080f;padding:4px 14px;border-radius:999px;font-family:'Bricolage Grotesque',sans-serif;font-size:11px;font-weight:900;letter-spacing:.05em;text-transform:uppercase}
+.compare-card h3{font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;margin:12px 0 6px}
+.compare-card .price{font-family:'Bricolage Grotesque',sans-serif;font-size:32px;font-weight:900;margin:8px 0}
+.compare-card .sub{font-size:14px;color:var(--t2);line-height:1.65;margin-bottom:18px}
+.compare-list{display:grid;gap:10px}
+.citem{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.65}
+.ico{width:20px;height:20px;border-radius:6px;flex:none;display:grid;place-items:center;font-size:11px;font-weight:900;margin-top:1px}
+.ico.good{background:var(--gd);color:var(--green);border:1px solid var(--gb)}
+.ico.bad{background:var(--rd);color:var(--red);border:1px solid rgba(255,69,58,.3)}
+
+/* DELIVERABLES */
+.deliverables{padding:32px}
+.deliverables h3{font-family:'Bricolage Grotesque',sans-serif;font-size:20px;font-weight:800;margin-bottom:20px}
+.deliv-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.deliv-item{display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:12px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07)}
+.deliv-ico{width:32px;height:32px;border-radius:10px;flex:none;display:grid;place-items:center;background:var(--gd);border:1px solid var(--gb);font-size:14px}
+.deliv-item strong{display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:13px;font-weight:700;margin-bottom:3px}
+.deliv-item span{font-size:12px;color:var(--t3);line-height:1.55}
+
+/* PRICING */
+.pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.price-card{padding:32px;position:relative}
+.price-card.highlight{border-color:rgba(0,255,136,.22);background:linear-gradient(180deg,rgba(0,255,136,.06),rgba(0,255,136,.02))}
+.price-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px}
+.price-top h3{font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800}
+.period{font-size:13px;color:var(--t3);margin-top:3px}
+.price{font-family:'Bricolage Grotesque',sans-serif;font-size:52px;font-weight:900;line-height:1;margin:14px 0 6px}
+.price-sub{font-size:14px;color:var(--t2);line-height:1.7;margin-bottom:22px}
+.features-list{display:grid;gap:10px;margin-bottom:24px}
+.feat-row{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.55}
+.guarantee{margin-top:16px;padding:14px 16px;border-radius:14px;background:rgba(0,255,136,.06);border:1px solid rgba(0,255,136,.18);font-size:13px;color:var(--t2);line-height:1.6}
+.guarantee strong{color:var(--green)}
+
+/* FAQ */
+.faq{max-width:760px;margin:0 auto;display:grid;gap:10px}
+.faq-item{border-radius:16px;overflow:hidden;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);transition:.2s}
+.faq-item:hover{border-color:rgba(255,255,255,.12)}
+.faq-q{width:100%;text-align:left;padding:20px 22px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:'Bricolage Grotesque',sans-serif;font-size:15px;font-weight:700;color:var(--t);transition:.18s}
+.faq-q .faq-icon{width:24px;height:24px;border-radius:8px;background:rgba(255,255,255,.07);display:grid;place-items:center;font-size:14px;color:var(--t3);flex:none;transition:.2s transform}
+.faq-item.open .faq-q .faq-icon{transform:rotate(45deg);background:var(--gd);color:var(--green)}
+.faq-a{max-height:0;overflow:hidden;transition:.3s max-height;padding:0 22px}
+.faq-item.open .faq-a{max-height:320px;padding-bottom:20px}
+.faq-a p{color:var(--t2);font-size:14px;line-height:1.8}
+
+/* FINAL CTA */
+.final{padding:64px;text-align:center;position:relative;overflow:hidden}
+.final::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(0,255,136,.07),transparent)}
+.final h2{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(30px,4vw,52px);font-weight:800;line-height:1.05;letter-spacing:-.04em;margin:14px 0 18px}
+.final h2 em{font-style:italic;color:var(--green)}
+.final > p{font-size:18px;line-height:1.8;color:var(--t2);max-width:600px;margin:0 auto 28px}
+.final-note{margin-top:18px;font-size:13px;color:var(--t3)}
+.final-note span{margin:0 8px}
+
+/* FOOTER */
+.footer{padding:28px 0;border-top:1px solid rgba(255,255,255,.06);margin-top:40px}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;font-size:13px;color:var(--t3)}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap}
+.footer-links a:hover{color:var(--t)}
+
+/* SECTION CTA CENTER */
+.section-cta-center{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;align-items:center;margin-top:32px}
+
+/* MODAL */
+.overlay{position:fixed;inset:0;z-index:100;background:rgba(5,8,15,.82);backdrop-filter:blur(12px);display:grid;place-items:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .22s}
+.overlay.open{opacity:1;pointer-events:auto}
+.modal{background:rgba(10,14,26,.98);border:1px solid var(--b2);border-radius:26px;padding:36px;max-width:440px;width:100%;position:relative;box-shadow:0 40px 100px rgba(0,0,0,.5)}
+.close-btn{position:absolute;top:14px;right:14px;width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,.07);color:var(--t2);cursor:pointer;font-size:14px;display:grid;place-items:center;transition:.15s;border:1px solid rgba(255,255,255,.08)}
+.close-btn:hover{background:rgba(255,255,255,.12);color:var(--t)}
+.modal h3{font-family:'Bricolage Grotesque',sans-serif;font-size:24px;font-weight:800;margin:10px 0 8px}
+.modal p{font-size:14px;color:var(--t2);line-height:1.7;margin-bottom:20px}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:12px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;font-family:'Bricolage Grotesque',sans-serif}
+.field input{width:100%;padding:12px 14px;border-radius:12px;font-size:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);color:var(--t);transition:.18s}
+.field input:focus{outline:none;border-color:rgba(0,255,136,.4);background:rgba(0,255,136,.04)}
+.field input::placeholder{color:var(--t3)}
+.err{display:none;padding:10px 14px;border-radius:10px;background:var(--rd);border:1px solid rgba(255,69,58,.3);color:var(--red);font-size:13px;margin-bottom:14px;line-height:1.55}
+.modal-actions{display:flex;gap:10px;flex-wrap:wrap}
+.modal-actions .btn{flex:1;justify-content:center}
+.help{margin-top:16px;font-size:13px;color:var(--t3);text-align:center;line-height:1.8}
+.help a{color:var(--blue);text-decoration:underline;text-underline-offset:3px}
+
+/* STICKY MOBILE CTA */
+.sticky-cta{position:fixed;left:12px;right:12px;bottom:12px;z-index:30;display:none;gap:8px;padding:8px;border-radius:22px;background:rgba(5,8,15,.82);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(22px);box-shadow:0 20px 50px rgba(0,0,0,.38)}
+.sticky-cta .btn{flex:1}
+
+/* RESPONSIVE */
+/* ── TABLET ── */
+@media(max-width:1080px){
+  .hero-grid,.mechanism,.roi,.panel.active{grid-template-columns:1fr}
+  .pain-grid,.for-grid,.pricing-grid,.compare{grid-template-columns:1fr}
+  .span-4,.span-6,.span-8,.span-12{grid-column:span 1}
+  .bento{grid-template-columns:1fr}
+  .hero-grid{gap:36px}
+}
+
+/* ── MOBILE NAV BREAKPOINT ── */
+@media(max-width:900px){
+  .nav-links,.nav-actions{display:none}
+  .hamburger{display:block}
+  .section{padding:64px 0}
+  .deliv-grid{grid-template-columns:1fr}
+  .trust-inner{gap:10px}
+  .trust-label{display:none}
+}
+
+/* ── MOBILE ── */
+@media(max-width:700px){
+  /* global */
+  .container{width:calc(100% - 32px)}
+  .section{padding:52px 0}
+  .section-head{margin-bottom:28px}
+  .section-head h2{font-size:clamp(26px,8vw,38px);letter-spacing:-.03em;line-height:1.08}
+  .section-head p{font-size:14px;line-height:1.75}
+  .eyebrow{font-size:10px;padding:6px 11px}
+
+  /* hero */
+  .hero{padding:52px 0 32px}
+  .hero-grid{gap:28px}
+  .hero-copy h1{font-size:clamp(34px,10vw,52px);letter-spacing:-.05em;line-height:.98;margin:14px 0 14px}
+  .hero-sub{font-size:14px;line-height:1.7;margin-bottom:20px}
+  .btn-row{gap:10px}
+  .btn-lg{padding:14px 20px;font-size:14px}
+  .btn-row .btn-sec{display:none} /* secondary CTA hidden on mobile hero — reduce noise */
+  .hero-proof{margin-top:16px;font-size:13px}
+  .chip-row{gap:6px;margin-top:12px}
+  .chip{font-size:11px;padding:6px 10px}
+  /* hide last 2 chips on mobile */
+  .chip-row .chip:nth-child(n+3){display:none}
+
+  /* hero visual — stripped down, no floating pills */
+  .fp{display:none}
+  .glow-blob{display:none}
+  .hero-visual{margin:0 -4px}
+  .dashboard{border-radius:18px;padding:14px}
+  .dash-name{font-size:15px}
+  .dash-kpis{grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px}
+  .dk{padding:10px 7px}
+  .dk .v{font-size:18px}
+  .dk .l{font-size:9px}
+  .ai-box{padding:10px}
+  .ai-box-head strong{font-size:10px}
+  .ai-box-head span{font-size:11px}
+  .ai-rows{gap:5px}
+  .ai-row{padding:7px 9px;font-size:12px}
+
+  /* trust bar — horizontal scroll */
+  .trust-inner{flex-wrap:nowrap;overflow-x:auto;padding:14px 16px;gap:8px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .trust-inner::-webkit-scrollbar{display:none}
+  .trust-list{flex-wrap:nowrap;gap:6px}
+  .trust-list .chip{white-space:nowrap;font-size:11px;padding:6px 10px}
+
+  /* who it's for */
+  .for-card{padding:20px 18px}
+  .for-card .for-ico{font-size:22px;margin-bottom:10px}
+  .for-card h3{font-size:15px}
+  .for-card p{font-size:13px}
+
+  /* pain */
+  .pain{padding:20px}
+  .pain .num{font-size:36px;margin-bottom:8px}
+  .pain h3{font-size:16px}
+  .pain p{font-size:13px}
+  .pain-cost{font-size:11px;padding:5px 10px}
+
+  /* mechanism */
+  .mechanism .left,.mechanism .right{padding:20px}
+  .mechanism .title{font-size:17px}
+  .flow{gap:10px;margin-top:14px}
+  .flow-item{padding:12px}
+  .flow-item strong{font-size:14px}
+  .flow-item p{font-size:13px}
+  .right .mini-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .tile{padding:12px}
+  .tile .v{font-size:15px}
+  .stack{padding:12px}
+  .stack-row{padding:7px 0}
+  .stack-row b{font-size:13px}
+
+  /* bento */
+  .feature{padding:20px;min-height:auto}
+  .feature h3{font-size:16px;margin:10px 0 8px}
+  .feature p{font-size:13px}
+  .bento .span-12 > div{grid-template-columns:1fr !important;gap:16px}
+  .icon{width:38px;height:38px;font-size:17px;border-radius:11px}
+
+  /* tabs */
+  .tabs{width:100%;border-radius:14px;padding:4px;gap:4px}
+  .tab{padding:8px 10px;font-size:11px;border-radius:10px;flex:1;text-align:center}
+  .panel.active{grid-template-columns:1fr;gap:12px}
+  .panel-card{padding:18px}
+  .step-card{padding:12px}
+  .step-card h4{font-size:13px}
+  .step-card p{font-size:12px}
+  .screenbox{padding:16px}
+  .litem{padding:8px 10px;font-size:12px}
+  .litem b{font-size:12px}
+
+  /* roi */
+  .roi{gap:12px}
+  .roi-card{padding:20px}
+  .roi-card h3{font-size:18px}
+  .roi-stats{grid-template-columns:repeat(2,1fr);gap:8px}
+  .roi-stat{padding:12px}
+  .roi-stat .v{font-size:14px}
+  /* roi table — hide middle column, make compact */
+  .roi-table{font-size:11px}
+  .roi-table thead th{padding:8px 8px;font-size:9px}
+  .roi-table tbody td{padding:9px 8px}
+  .roi-table .hide-mobile{display:none}
+
+  /* compare */
+  .compare-card{padding:22px 18px}
+  .compare-card h3{font-size:18px}
+  .compare-card .price{font-size:26px}
+  .compare-card .sub{font-size:13px}
+  .citem{font-size:13px}
+
+  /* deliverables */
+  .deliverables{padding:20px}
+  .deliverables h3{font-size:17px;margin-bottom:14px}
+  .deliv-item{padding:12px}
+  .deliv-item strong{font-size:12px}
+  .deliv-item span{font-size:11px}
+
+  /* pricing */
+  .price-card{padding:22px 18px}
+  .price{font-size:42px}
+  .price-sub{font-size:13px;margin-bottom:16px}
+  .feat-row{font-size:13px}
+  .guarantee{font-size:12px}
+
+  /* faq */
+  .faq-q{padding:16px 18px;font-size:14px}
+  .faq-a{padding:0 18px}
+  .faq-a p{font-size:13px}
+
+  /* final cta */
+  .final{padding:32px 20px;text-align:left}
+  .final h2{font-size:clamp(24px,8vw,36px)}
+  .final > p{font-size:15px;margin-left:0;margin-bottom:20px}
+  .final .btn-row{justify-content:flex-start;flex-direction:column;align-items:stretch}
+  .final .btn-row .btn{text-align:center;justify-content:center}
+  .final-note{font-size:11px}
+  .final-note span{display:block;margin:2px 0}
+
+  /* section cta centers */
+  .section-cta-center{flex-direction:column;align-items:stretch}
+  .section-cta-center .btn{text-align:center;justify-content:center}
+
+  /* sticky cta */
+  .sticky-cta{display:flex}
+
+  /* modal */
+  .modal{padding:24px 20px;border-radius:20px}
+  .modal h3{font-size:20px}
+  /* Zeli characters */
+  .zeli-float{width:90px !important;height:90px !important;bottom:-28px !important;right:-10px !important;left:auto !important}
+  .pain-zeli-row{flex-direction:column !important;text-align:center !important;padding:24px 18px !important;gap:20px !important}
+  .pain-zeli-row img{width:160px !important;height:160px !important}
+  .plaque-row img{width:200px !important}
+  /* full-bleed scene images */
+  .scene-img{height:260px !important}
+}
+
+/* ═══ DYNAMIC ISLAND ═══════════════════════════════════════════════ */
+/* hidden at load — positioned at nav height center so it morphs FROM there */
+.island-wrap{
+  position:fixed;top:0;left:50%;transform:translateX(-50%);
+  z-index:100;pointer-events:none;
+  opacity:0;
+  /* starts at nav vertical center (36px = half of 72px nav) */
+  translate:0 36px;
+  transition:opacity .34s ease, translate .38s cubic-bezier(.34,1.2,.64,1);
+}
+.island-wrap.il-visible{
+  opacity:1;
+  /* final position: 14px from top */
+  translate:0 14px;
+  pointer-events:auto;
+}
+.island{
+  display:flex;align-items:center;
+  background:rgba(8,10,20,.92);border:1px solid rgba(255,255,255,.12);border-radius:999px;
+  padding:5px 6px;backdrop-filter:blur(32px);
+  box-shadow:0 8px 40px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.04) inset;
+  white-space:nowrap;transition:border-color .25s,box-shadow .25s;
+}
+.island:hover{border-color:rgba(0,255,136,.22);box-shadow:0 8px 50px rgba(0,0,0,.55),0 0 24px rgba(0,255,136,.07)}
+.island-logo{display:flex;align-items:center;gap:7px;padding:3px 10px 3px 3px;text-decoration:none;flex:none}
+.island-logo img{width:28px;height:28px;border-radius:8px;object-fit:contain}
+.island-logo strong{font-family:'Bricolage Grotesque',sans-serif;font-size:13px;font-weight:800;color:var(--t)}
+.island-sep{width:1px;height:18px;background:rgba(255,255,255,.1);flex:none;margin:0 4px}
+.island-links{display:flex;align-items:center;gap:1px}
+.island-link{
+  height:28px;padding:0 11px;border-radius:999px;display:inline-flex;align-items:center;
+  color:rgba(238,242,255,.45);font-size:12px;font-weight:600;
+  font-family:'Bricolage Grotesque',sans-serif;text-decoration:none;
+  transition:.18s;border:1px solid transparent;white-space:nowrap;
+}
+.island-link:hover{color:var(--t);background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.08)}
+.island-link.il-active{color:var(--green);background:rgba(0,255,136,.09);border-color:rgba(0,255,136,.2)}
+.island-cta{
+  margin-left:5px;flex:none;height:28px;padding:0 13px;border-radius:999px;
+  background:var(--green);color:#05080f;border:0;cursor:pointer;
+  font-family:'Bricolage Grotesque',sans-serif;font-size:12px;font-weight:800;
+  display:inline-flex;align-items:center;text-decoration:none;
+  transition:.2s;position:relative;overflow:hidden;
+}
+.island-cta::after{content:'';position:absolute;top:0;left:-70%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.32),transparent);transform:skewX(-18deg);opacity:0}
+.island-cta:hover{filter:brightness(1.08);transform:scale(1.04)}
+.island-cta:hover::after{opacity:1;animation:btnSweep .5s ease forwards}
+.island-dot{width:5px;height:5px;border-radius:999px;background:var(--green);flex:none;
+  box-shadow:0 0 5px rgba(0,255,136,.9);animation:blink 2.5s ease-in-out infinite;margin-right:4px}
+@media(max-width:700px){
+  .island-links,.island-sep{display:none!important}
+  .island{padding:4px 5px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ═══ DYNAMIC ISLAND ═══════════════════════════════════════════════ -->
+<div class="island-wrap" id="islandWrap">
+  <div class="island" id="island">
+    <a class="island-logo" href="#top">
+      <img src="logo.png" alt="Zeli">
+      <strong>Zelo</strong>
+    </a>
+    <div class="island-sep"></div>
+    <div class="island-links">
+      <span class="island-dot"></span>
+      <a class="island-link" href="#features">Features</a>
+      <a class="island-link" href="#how">How it works</a>
+      <a class="island-link" href="#roi">Results</a>
+      <a class="island-link" href="#compare">Compare</a>
+      <a class="island-link" href="#pricing">Pricing</a>
+      <a class="island-link" href="#faq">FAQ</a>
+    </div>
+    <a class="island-cta" href="https://forms.gle/ZVFkoW9DxqM1F5Co9" target="_blank">Apply →</a>
+  </div>
+</div>
+
+<!-- ═══ NAV ═══════════════════════════════════════════════════════════ -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top">
+      <div class="brand-mark" style="background:none;border:none;padding:0;width:40px;height:40px;overflow:visible">
+        <img src="logo.png" alt="Zeli" style="width:44px;height:44px;object-fit:contain;margin-top:-2px;margin-left:-2px;border-radius:10px">
+      </div>
+      <div class="brand-text">
+        <strong>Zelo</strong>
+        <span>DM intelligence · setter teams</span>
+      </div>
+    </a>
+    <nav class="nav-links">
+      <div class="nav-item">
+        <a class="nav-link" href="#features">Features
+          <svg viewBox="0 0 10 7" fill="currentColor"><path d="M0 0l5 7 5-7z"/></svg>
+        </a>
+        <div class="nav-dropdown">
+          <a class="drop-item" href="#features"><div class="drop-ico">🧠</div><div><strong>AI Chat Analysis</strong><span>Paste raw DMs — every field filled automatically</span></div></a>
+          <a class="drop-item" href="#how"><div class="drop-ico">👥</div><div><strong>Three roles, one system</strong><span>Setter, coach, and growth operator views</span></div></a>
+          <a class="drop-item" href="#intel"><div class="drop-ico">📈</div><div><strong>Market intelligence</strong><span>Gaps, objections, attribution, buyer patterns</span></div></a>
+        </div>
+      </div>
+      <a class="nav-link" href="#how">How it works</a>
+      <a class="nav-link" href="#roi">Results</a>
+      <a class="nav-link" href="#compare">Compare</a>
+      <a class="nav-link" href="#pricing">Pricing</a>
+      <a class="nav-link" href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="btn btn-ghost btn-sm" onclick="openLogin(event)">Log in →</button>
+      <a class="btn btn-primary btn-sm" href="#pricing">Get Zelo</a>
+    </div>
+    <button class="hamburger" onclick="toggleMobile()"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="mobile" id="mobileMenu">
+  <a href="#features" onclick="closeMobile()">Features <span>→</span></a>
+  <a href="#how" onclick="closeMobile()">How it works <span>→</span></a>
+  <a href="#roi" onclick="closeMobile()">Results <span>→</span></a>
+  <a href="#compare" onclick="closeMobile()">Compare <span>→</span></a>
+  <a href="#pricing" onclick="closeMobile()">Pricing <span>→</span></a>
+  <a href="#faq" onclick="closeMobile()">FAQ <span>→</span></a>
+  <button onclick="openLogin(event);closeMobile()">Log in to my workspace <span>→</span></button>
+  <a class="cta" href="#pricing" onclick="closeMobile()">Get Zelo <span>→</span></a>
+</div>
+
+<main id="top">
+
+<!-- ═══ HERO ═══════════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <div class="eyebrow reveal"><span class="dot"></span> CRM and AI intelligence for Instagram setter teams</div>
+      <h1 class="brig reveal d1">
+        Every <em>DM</em> already contains<br>the next sale.
+      </h1>
+      <p class="hero-sub reveal d2">
+        Paste a DM conversation into Zelo. Funnel stage, objections, content gaps — filled in seconds. It even tells you what to post next so those objections <strong>stop coming up.</strong>
+      </p>
+      <div class="btn-row reveal d3">
+        <a class="btn btn-primary btn-lg" href="https://forms.gle/ZVFkoW9DxqM1F5Co9" target="_blank">Apply for access →</a>
+        <a class="btn btn-sec" href="#how">See how it works</a>
+      </div>
+      <div class="hero-proof reveal d4">
+        <div class="faces">
+          <div class="face f1">M</div>
+          <div class="face f2">S</div>
+          <div class="face f3">R</div>
+          <div class="face f4">T</div>
+        </div>
+        <div class="proof-copy">
+          <strong>Built for high-ticket info businesses</strong>
+          €3k–€15k offers · setter teams · DM-first sales
+        </div>
+      </div>
+      <div class="chip-row reveal d5">
+        <span class="chip">One-time deployment</span>
+        <span class="chip">AI fully managed</span>
+        <span class="chip">No recurring SaaS fee</span>
+        <span class="chip">Works with any Instagram today</span>
+      </div>
+    </div>
+    <div class="hero-visual reveal d2" style="position:relative;overflow:visible">
+      <div class="glow-blob gb1"></div>
+      <div class="glow-blob gb2"></div>
+      <div class="fp fp1">🧠 AI filled 11 fields in 2.1s</div>
+      <div class="fp fp2">Founder voice · 3 replies ready</div>
+      <div class="dashboard">
+        <div class="dash-top">
+          <div><div class="dash-label">Live Pipeline</div><div class="dash-name">Setter Team Snapshot</div></div>
+          <div class="live-pill"><span class="dot"></span> Live</div>
+        </div>
+        <div class="dash-kpis">
+          <div class="dk g"><div class="v">31</div><div class="l">Qualified</div></div>
+          <div class="dk b"><div class="v">9</div><div class="l">CLS sent</div></div>
+          <div class="dk o"><div class="v">4</div><div class="l">Closed</div></div>
+        </div>
+        <div class="ai-box">
+          <div class="ai-box-head"><strong>AI analysis — Carlos, Spain</strong><span>Confidence 94%</span></div>
+          <div class="ai-rows">
+            <div class="ai-row"><b>Awareness</b><span class="info">Solution aware</span></div>
+            <div class="ai-row"><b>Pipeline</b><span class="good">Calendly sent</span></div>
+            <div class="ai-row"><b>Objection</b><span class="warn">Already bought courses before</span></div>
+            <div class="ai-row"><b>Content signal</b><span class="good">Asked about Phase 2 psychology</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="trust">
+    <div class="trust-inner">
+      <div class="trust-label">What it solves</div>
+      <div class="trust-list">
+        <span class="chip">Stop logging leads manually</span>
+        <span class="chip">Know which content drives qualified buyers</span>
+        <span class="chip">Capture objections before they disappear</span>
+        <span class="chip">Reply in the founder's voice — one click</span>
+        <span class="chip">Spot the stuck stage before it costs you</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PAIN ════════════════════════════════════════════════════════════ -->
+<section class="section" id="pain">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span> The real problem</div>
+      <h2>Your setters work hard.<br>What they learn <em>disappears every night.</em></h2>
+      <p>You're getting DMs. Setters are having conversations. Every insight inside those conversations — objections raised, content topics asked about, signals that a buyer is ready — dies in their inbox when the shift ends.</p>
+    </div>
+
+
+    <div class="pain-grid">
+      <div class="card pain reveal d1">
+        <div class="num">01</div>
+        <h3>Hot leads go cold while setters hunt for context</h3>
+        <p>No centralised view. No urgency system. Just a pile of DMs and a spreadsheet nobody trusts. By the time the setter finds the thread, the lead's energy has gone. That's a close you earned and didn't get.</p>
+        <div class="pain-cost">→ Cost: slower follow-up, fewer closes</div>
+      </div>
+      <div class="card pain reveal d2">
+        <div class="num">02</div>
+        <h3>You're posting blind — no idea which content drives buyers</h3>
+        <p>You're measuring views and saves. Nobody's connecting which specific video drove the 7 qualified leads this week. So you keep recreating what gets likes — not what gets DMs from people who pay €5k.</p>
+        <div class="pain-cost">→ Cost: wasted content hours, lower distribution ROI</div>
+      </div>
+      <div class="card pain reveal d3">
+        <div class="num">03</div>
+        <h3>Your audience tells you what to sell — you can't hear it</h3>
+        <p>"Asked about Phase 2 psychology." "Wanted to know about risk management." "Said they'd tried three other programs." Every one is a content idea, a lead magnet, or a product gap. It dies in a setter note every single day.</p>
+        <div class="pain-cost">→ Cost: missed product decisions, repeated objections</div>
+      </div>
+    </div>
+
+    <div class="pain-zeli-row reveal d3" style="margin-top:40px;display:flex;align-items:center;justify-content:center;gap:40px;padding:36px;border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08)">
+      <img src="dead_lead.png" alt="Dead lead" style="width:220px;height:220px;object-fit:contain;flex:none;mix-blend-mode:screen">
+      <div style="max-width:420px">
+        <div class="eyebrow" style="margin-bottom:14px"><span class="dot"></span> Sound familiar?</div>
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(22px,3vw,32px);font-weight:800;line-height:1.1;letter-spacing:-.03em;margin-bottom:12px">This is what a <em style="color:var(--red);font-style:italic">dead lead</em> looks like.</h3>
+        <p style="color:var(--t2);font-size:15px;line-height:1.8">14 days. No reply. No context. No handoff. Your setter moved on and the lead just... stopped existing. Zelo makes sure this never happens — every lead stays alive, tracked, and followed up.</p>
+      </div>
+    </div>
+
+    <div class="pain-wave-wrap">
+      <svg class="pain-wave-svg" viewBox="0 0 2400 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path class="pain-wave-track" d="M0,30 C180,55 350,5 600,30 C850,55 1020,5 1200,30 C1380,55 1550,5 1800,30 C2050,55 2220,5 2400,30"/>
+        <path class="pain-wave-flash" d="M0,30 C180,55 350,5 600,30 C850,55 1020,5 1200,30 C1380,55 1550,5 1800,30 C2050,55 2220,5 2400,30"/>
+      </svg>
+    </div>
+
+    <div class="section-cta-center reveal">
+      <a class="btn btn-primary" href="https://forms.gle/ZVFkoW9DxqM1F5Co9" target="_blank">Apply for access →</a>
+      <a class="btn btn-sec" href="https://mail.google.com/mail/u/0/?fs=1&to=artexak.business@gmail.com&su=Quick+question&body=Hey+Prokop,+I+saw+your+offer+and...&tf=cm" target="_blank">Ask a question first</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MECHANISM ══════════════════════════════════════════════════════ -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span> How Zelo works</div>
+      <h2>Paste the conversation.<br>Get the <em>full picture.</em></h2>
+      <p>The setter pastes the DM thread — any format, any language, any length. Zelo extracts every field that matters in seconds. No cleaning, no reformatting, no manual thinking required.</p>
+    </div>
+
+    <div class="reveal" style="display:flex;justify-content:center;margin:0 0 40px">
+      <img src="focused.png" alt="Zeli analysing DM conversations" style="width:min(680px,100%);border-radius:20px;display:block;filter:drop-shadow(0 24px 60px rgba(0,0,0,.55))">
+    </div>
+
+    <div class="card mechanism">
+      <div class="left reveal d1">
+        <div class="title">From raw DM to structured intelligence in under 3 seconds.</div>
+        <p class="muted" style="font-size:14px;line-height:1.75">Works with Spanish, Portuguese, Czech, and any other language. Handles timestamps, story replies, voice message labels, and messy mid-thread formatting. The AI figures it out so the setter doesn't have to.</p>
+        <div class="flow">
+          <div class="flow-item">
+            <div class="step-num">1</div>
+            <div><strong>Setter pastes the DM thread</strong><p>Raw Instagram conversation — any length, any language, any format. No prep work. Just paste.</p></div>
+          </div>
+          <div class="flow-item">
+            <div class="step-num">2</div>
+            <div><strong>11 intelligence fields are filled automatically</strong><p>Pipeline stage, awareness level, urgency, objection, content signal, country, first touch, next action — all extracted and saved to the lead's profile.</p></div>
+          </div>
+          <div class="flow-item">
+            <div class="step-num">3</div>
+            <div><strong>Setter replies in the founder's exact voice</strong><p>Three DM replies — Direct, Empathy, Value — in the founder's configured tone. One click to copy. No rewriting needed.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="right reveal d2">
+        <div class="mini-grid">
+          <div class="tile"><div class="t">Pipeline stage</div><div class="v g">Calendly sent</div></div>
+          <div class="tile"><div class="t">Awareness</div><div class="v b">Solution aware</div></div>
+          <div class="tile"><div class="t">Urgency</div><div class="v o">🔴 High</div></div>
+          <div class="tile"><div class="t">AI Confidence</div><div class="v g">94%</div></div>
+        </div>
+        <div class="stack">
+          <div class="stack-row"><span>Content signal</span><b class="g">Phase 2 psychology breakdown</b></div>
+          <div class="stack-row"><span>Objection</span><b class="o">Already spent on courses before</b></div>
+          <div class="stack-row"><span>Country</span><b>Spain</b></div>
+          <div class="stack-row"><span>First touch</span><b class="b">YouTube: funded challenge video</b></div>
+          <div class="stack-row"><span>Next action</span><b class="g">Follow up Friday — case study</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WHO IT'S FOR ═══════════════════════════════════════════════════ -->
+<section class="section" id="for">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span> Built for a specific model</div>
+      <h2>This fits your team if <em>all three</em><br>of these are true.</h2>
+      <p>Zelo is not a general CRM. It is purpose-built for one sales model — and it works exceptionally well inside it.</p>
+    </div>
+    <div class="for-grid">
+      <div class="card for-card reveal d1">
+        <span class="for-ico">💬</span>
+        <h3>You close in Instagram DMs</h3>
+        <p>Your setters live in the Instagram inbox. Leads come from Reels, Stories, or YouTube. The conversation happens before the call — and that's where the real intelligence lives.</p>
+      </div>
+      <div class="card for-card reveal d2">
+        <span class="for-ico">💰</span>
+        <h3>Your offer is €3k or more</h3>
+        <p>High-ticket buyers don't commit to a chatbot. They need a human to earn trust first. Zelo makes that human conversation smarter — not removes it from the process.</p>
+      </div>
+      <div class="card for-card reveal d3">
+        <span class="for-ico">👥</span>
+        <h3>You have at least one setter</h3>
+        <p>One setter is enough to get real value from day one. A team of setters turns the intelligence system into a compounding asset — every conversation teaches the whole team.</p>
+      </div>
+    </div>
+    <div class="card reveal" style="margin-top:14px;max-width:760px;position:relative;overflow:hidden">
+      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--red),transparent)"></div>
+      <div style="padding:24px 28px">
+        <strong style="font-family:'Bricolage Grotesque',sans-serif;font-size:14px;color:rgba(255,100,90,.9)">Not a fit if:</strong>
+        <p style="margin-top:8px;font-size:14px;line-height:1.75;color:var(--t2)">You want full AI automation to replace your setters. You're running a low-ticket offer. You're pre-audience or pre-offer. You want a plug-and-play SaaS with no deployment call. Zelo is a configured system — not a subscription you turn on yourself.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BENTO FEATURES ════════════════════════════════════════════════ -->
+<section class="section" id="intel">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span> The six modules</div>
+      <h2>Everything your setter team needs.<br><em>Nothing they don't.</em></h2>
+      <p>Each module runs on the data your team already logs. Nothing extra to install. No third-party integrations. No data exports needed.</p>
+    </div>
+    <div class="bento">
+      <article class="card feature span-6 reveal d1">
+        <div class="icon">💡</div>
+        <h3>Gap Finder</h3>
+        <p>Every week, Zelo reads every topic your leads raised and surfaces the most-asked question, a lead magnet your audience is actively requesting, and a product gap worth building. Your content calendar writes itself — from buyer language, not from what got the most views.</p>
+        <div class="mock">
+          <div class="mrow"><span class="k">This week's top topic</span><span class="v g">Phase 2 psychology</span></div>
+          <div class="mrow"><span class="k">Lead magnet idea</span><span class="v b">"5-Min Pre-Trade Checklist"</span></div>
+          <div class="mrow"><span class="k">Product gap detected</span><span class="v o">Live accountability group</span></div>
+        </div>
+      </article>
+      <article class="card feature span-6 reveal d2">
+        <div class="icon b">🚧</div>
+        <h3>Objection Library</h3>
+        <p>Every objection logged by any setter gets clustered and analysed. You see the root belief behind it, the exact script that handles it in DMs, and the content piece that would eliminate it before it ever comes up again. One setter logs it. The whole team benefits permanently.</p>
+        <div class="mock">
+          <div class="mrow"><span class="k">Top objection</span><span class="v r">Spent on courses before</span></div>
+          <div class="mrow"><span class="k">Root belief</span><span class="v o">Burned by promises — not results</span></div>
+          <div class="mrow"><span class="k">Team script</span><span class="v g">2 variants ready to copy</span></div>
+        </div>
+      </article>
+      <article class="card feature span-4 reveal d1">
+        <div class="icon o">📍</div>
+        <h3>Content Attribution</h3>
+        <p>Setters log which video made the lead DM. After 50 leads you see: "YouTube funded challenge drove 31 qualified buyers. Story CTAs drove 9." Measure content ROI in closed revenue — not in views or saves.</p>
+      </article>
+      <article class="card feature span-4 reveal d2">
+        <div class="icon">🧠</div>
+        <h3>Buyer Intelligence</h3>
+        <p>Zelo compares every closed deal against every non-closer and surfaces the patterns. "YouTube leads from Spain who are Solution Aware close at 3× the rate of Story CTA leads." Insight that normally takes an analyst months to find.</p>
+      </article>
+      <article class="card feature span-4 reveal d3">
+        <div class="icon p">✍️</div>
+        <h3>AI Reply Suggestions</h3>
+        <p>Configure the founder's voice once. Setters get three suggested replies — Direct, Empathy, Value — in that exact tone every time they open a lead. One click to copy. No thinking about what to write next.</p>
+      </article>
+      <article class="card feature span-12 reveal">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center">
+          <div>
+            <div class="icon b">📊</div>
+            <h3>Coach Dashboard + Pipeline Velocity</h3>
+            <p>The coach sees the full pipeline as a live visual. Every stage shows average days leads spend there before moving. The stuck stage is flagged in red. Setter leaderboard with live conversion rates. The manager never chases a spreadsheet update again.</p>
+            <div class="ftag" style="margin-top:16px">Zero manual reporting · updates automatically</div>
+          </div>
+          <div class="mock" style="margin-top:0">
+            <div class="mrow"><span class="k">Inbound → Value asset sent</span><span class="v g">1.2 days avg</span></div>
+            <div class="mrow"><span class="k">Value asset → Pitching</span><span class="v g">2.8 days avg</span></div>
+            <div class="mrow" style="background:rgba(255,69,58,.06);border-radius:8px;padding:7px"><span class="k" style="color:var(--red)">⚠️ Pitching → CLS sent</span><span class="v r">12.4 days — stuck</span></div>
+            <div class="mrow"><span class="k">Top setter conversion</span><span class="v g">38% this month ↑</span></div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="section-cta-center reveal">
+      <a class="btn btn-primary" href="https://forms.gle/ZVFkoW9DxqM1F5Co9" target="_blank">Apply for access →</a>
+      <a class="btn btn-sec" href="https://mail.google.com/mail/u/0/?fs=1&to=artexak.business@gmail.com&su=Quick+question&body=Hey+Prokop,+I+saw+your+offer+and...&tf=cm" target="_blank">Ask a question</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ HOW IT WORKS — 3 TABS ══════════════════════════════════════════ -->
+<section class="section" id="how">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span> Three roles, one system</div>
+      <h2>Setter. Coach. Growth Operator.<br><em>Same system — three different lenses.</em></h2>
+      <p>The experience matches the job. Setters need speed and guided replies. Coaches need pipeline visibility and weekly market signals. Growth operators need control across multiple client workspaces.</p>
+    </div>
+    <div class="tabs reveal d1">
+      <button class="tab active" onclick="switchTab(0,this)">For setters</button>
+      <button class="tab" onclick="switchTab(1,this)">For coaches</button>
+      <button class="tab" onclick="switchTab(2,this)">For growth operators</button>
+    </div>
+
+    <div class="panel active" id="panel-0">
+      <div class="card panel-card">
+        <div class="steps">
+          <div class="step-card"><div class="step-num">1</div><div><h4>Paste the conversation</h4><p>Drop the raw DM into the paste area. Any length, any language. Nothing needs cleaning first.</p></div></div>
+          <div class="step-card"><div class="step-num">2</div><div><h4>Get a clean lead profile in seconds</h4><p>Stage, awareness, objection, urgency, and content signal fill automatically. Review, adjust if needed, save. Next lead.</p></div></div>
+          <div class="step-card"><div class="step-num">3</div><div><h4>Reply better, faster</h4><p>Three DM replies in the founder's tone appear automatically. Pick the version that fits the moment. Copy in one click.</p></div></div>
+        </div>
+      </div>
+      <div class="card panel-card screenbox">
+        <div class="scrn-top"><div class="sbadge">Setter view — lead form</div><div class="slive"><span class="dot"></span> live</div></div>
+        <div class="list">
+          <div class="litem"><span>Pipeline stage</span><b class="b">Calendly sent</b></div>
+          <div class="litem"><span>Urgency</span><b class="o">🔴 High — follow up today</b></div>
+          <div class="litem"><span>Objection raised</span><b class="r">Already bought before — burnt</b></div>
+          <div class="litem"><span>AI reply suggestion</span><b class="g">Case study ready · Direct variant</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" id="panel-1">
+      <div class="card panel-card">
+        <div class="steps">
+          <div class="step-card"><div class="step-num">1</div><div><h4>Open the overview — it's already updated</h4><p>Total leads, qualified, CLS sent, calls booked, closed, pipeline velocity. All live. No chasing updates.</p></div></div>
+          <div class="step-card"><div class="step-num">2</div><div><h4>See exactly where the funnel is stalling</h4><p>Average days per stage, stage conversion rates, and setter-level breakdown surface the bottleneck before it becomes expensive.</p></div></div>
+          <div class="step-card"><div class="step-num">3</div><div><h4>Read this week's market signals</h4><p>The Intel tab shows the top topic leads raised, the most repeated objections, and which content drove the best buyers. Strategy from DMs, not from admin work.</p></div></div>
+        </div>
+      </div>
+      <div class="card panel-card screenbox">
+        <div class="scrn-top"><div class="sbadge">Coach view — intelligence</div><div class="slive"><span class="dot"></span> live</div></div>
+        <div class="list">
+          <div class="litem"><span>This week's top topic</span><b class="g">Phase 2 psychology</b></div>
+          <div class="litem"><span>Most repeated objection</span><b class="r">Tried courses before (×14)</b></div>
+          <div class="litem"><span>Best-performing content</span><b class="b">YouTube — funded challenge</b></div>
+          <div class="litem"><span>Team conversion rate</span><b class="g">32% — up 7pts from last month</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" id="panel-2">
+      <div class="card panel-card">
+        <div class="steps">
+          <div class="step-card"><div class="step-num">1</div><div><h4>Deploy one isolated workspace per client offer</h4><p>Each client gets their own environment. No data mixing across brands or offers. All managed from a single growth operator dashboard.</p></div></div>
+          <div class="step-card"><div class="step-num">2</div><div><h4>Add team members with name and PIN</h4><p>Fast onboarding. No email circus. Setters, coaches, and admins have clearly separated permissions from day one.</p></div></div>
+          <div class="step-card"><div class="step-num">3</div><div><h4>Configure the founder's voice once — it stays</h4><p>Paste Creator DNA and approved stage scripts. Every AI reply suggestion across every setter stays inside brand voice from that point forward — automatically.</p></div></div>
+        </div>
+      </div>
+      <div class="card panel-card screenbox">
+        <div class="scrn-top"><div class="sbadge">Growth operator dashboard</div><div class="slive"><span class="dot"></span> isolated</div></div>
+        <div class="list">
+          <div class="litem"><span>Workspace 1</span><b class="g">Trading Academy · 4 setters</b></div>
+          <div class="litem"><span>Workspace 2</span><b class="b">Fitness Coaching · 2 setters</b></div>
+          <div class="litem"><span>Creator DNA</span><b class="o">Configured — voice locked in</b></div>
+          <div class="litem"><span>Script library</span><b class="p">8 stages · all variants set</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ROI ═════════════════════════════════════════════════════════════ -->
+<section class="section" id="roi">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span> The upside</div>
+      <h2>What actually changes when<br>you run the system properly.</h2>
+      <p>The point is to reduce invisible work, expose bottlenecks, and help the team close more of the buyers already in the pipeline. Here's what that looks like in practice.</p>
+    </div>
+    <div class="roi">
+      <div class="card roi-card reveal d1">
+        <div class="eyebrow"><span class="dot"></span> What shifts immediately</div>
+        <h3>The intelligence that was disappearing starts compounding.</h3>
+        <p class="muted" style="font-size:14px;line-height:1.75;margin-top:12px">Every conversation your team has becomes a data point. After 30 days you have objection clusters, attribution data, and buyer patterns that would normally take an analyst and 6 months to surface.</p>
+        <div class="roi-stats">
+          <div class="roi-stat g"><div class="v">Seconds</div><div class="l">Lead logging time per DM</div></div>
+          <div class="roi-stat b"><div class="v">Live</div><div class="l">Pipeline visibility — no chasing</div></div>
+          <div class="roi-stat o"><div class="v">Automated</div><div class="l">Objection clustering + scripts</div></div>
+          <div class="roi-stat p"><div class="v">Data-led</div><div class="l">Content strategy from buyers</div></div>
+        </div>
+      </div>
+      <div class="card roi-card reveal d2">
+        <table class="roi-table">
+          <thead>
+            <tr>
+              <th>Area</th>
+              <th class="hide-mobile">Without Zelo</th>
+              <th>With Zelo</th>
+              <th>Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Lead logging</td><td class="roi-no hide-mobile">Manual, slow, inconsistent</td><td class="roi-yes">Structured in seconds</td><td><span class="roi-tag g">Speed</span></td></tr>
+            <tr><td>Pipeline view</td><td class="roi-no hide-mobile">Hidden in notes + memory</td><td class="roi-yes">Live — by stage and setter</td><td><span class="roi-tag b">Control</span></td></tr>
+            <tr><td>Objections</td><td class="roi-no hide-mobile">Lost after every conversation</td><td class="roi-yes">Clustered — scripts ready</td><td><span class="roi-tag o">Sales</span></td></tr>
+            <tr><td>Content ROI</td><td class="roi-no hide-mobile">Views and gut feeling</td><td class="roi-yes">Closes per content piece</td><td><span class="roi-tag g">Attribution</span></td></tr>
+            <tr><td>Setter replies</td><td class="roi-no hide-mobile">Whatever they remember</td><td class="roi-yes">Founder voice — every stage</td><td><span class="roi-tag b">Consistency</span></td></tr>
+            <tr><td>Bottleneck</td><td class="roi-no hide-mobile">Found when it's expensive</td><td class="roi-yes">Flagged in real time</td><td><span class="roi-tag o">Ops</span></td></tr>
+            <tr class="big"><td>Intelligence</td><td class="roi-no hide-mobile">Dies in the inbox</td><td class="roi-yes">Compounding daily</td><td><span class="roi-tag g">The point</span></td></tr>
+          </tbody>
+        </table>
+        <div class="roi-note">Exact results depend on offer quality, traffic, setter skill, and how consistently the team uses the system. This is the mechanism — not a guarantee of specific numbers.</div>
+      </div>
+    </div>
+
+    <div class="section-cta-center reveal">
+      <a class="btn btn-primary" href="https://forms.gle/ZVFkoW9DxqM1F5Co9" target="_blank">Apply for access →</a>
+      <a class="btn btn-sec" href="https://mail.google.com/mail/u/0/?fs=1&to=artexak.business@gmail.com&su=Quick+question&body=Hey+Prokop,+I+saw+your+offer+and...&tf=cm" target="_blank">Ask a question</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ COMPOUND EFFECT ════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span> The compound effect</div>
+      <h2>Your audience is already telling you<br>what to sell next. <em>You can't hear them yet.</em></h2>
+      <p>Zelo makes that signal visible. The intelligence compounds with every conversation logged — and that's the part most businesses consistently undervalue.</p>
+    </div>
+    <div class="compare">
+      <div class="card compare-card reveal d1">
+        <div class="eyebrow"><span class="dot"></span> If you keep doing it manually</div>
+        <h3>Everything stays in the setter's head.</h3>
+        <div class="sub">The team answers DMs. The business never captures the data. Objections repeat. Content gaps stay invisible. Product decisions are made on opinion, not buyer language.</div>
+        <div class="compare-list">
+          <div class="citem"><span class="ico bad">✕</span><span>Content ideas stay random — built around views, not conversations. The audience tells you what they want and you can't hear it.</span></div>
+          <div class="citem"><span class="ico bad">✕</span><span>Managers chase updates. Setters lose time to admin. Nobody owns the intelligence loop because nobody built one.</span></div>
+          <div class="citem"><span class="ico bad">✕</span><span>Every month the same objections surface without a system to handle them. The script lives in one setter's head.</span></div>
+        </div>
+      </div>
+      <div class="card compare-card highlight reveal d2">
+        <div class="badge-top">Zelo</div>
+        <div class="eyebrow"><span class="dot"></span> If you run the system properly</div>
+        <h3>The business gets a live feedback loop.</h3>
+        <div class="sub">The team stays human at the point that closes high-ticket buyers. Zelo handles the intelligence, structure, and guidance that wraps around that conversation.</div>
+        <div class="compare-list">
+          <div class="citem"><span class="ico good">✓</span><span>Objections cluster automatically. Content themes surface weekly. Buyer patterns stop being guesswork.</span></div>
+          <div class="citem"><span class="ico good">✓</span><span>The founder sees which leads came from which content — and who needs follow-up today — without asking anyone.</span></div>
+          <div class="citem"><span class="ico good">✓</span><span>When one setter cracks an objection handle, the whole team gets it immediately through the shared library.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ AUTOMATION COMPARE ════════════════════════════════════════════ -->
+<section class="section" id="compare">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span> Two different lanes</div>
+      <h2>Full automation is one lane.<br><em>Zelo is the other.</em></h2>
+      <p>Tools that replace human setters with AI work well for low-ticket offers. Zelo is built for the buyer who still wants a real conversation before committing €5k to a program — and it makes that conversation as effective as possible.</p>
+    </div>
+    <div class="compare">
+      <div class="card compare-card competitor reveal d1">
+        <div class="eyebrow"><span style="width:7px;height:7px;border-radius:999px;background:rgba(168,85,247,.6);flex:none;display:inline-block"></span> AI-first automation tools</div>
+        <h3>Automation first</h3>
+        <div class="price">$375<span style="font-size:20px;font-weight:500">/mo</span></div>
+        <div class="sub">Useful when the goal is to push as much of the sales conversation into software as possible — and your buyer doesn't need trust before purchasing.</div>
+        <div class="compare-list">
+          <div class="citem"><span class="ico bad">✕</span><span>Replaces the human conversation. High-ticket buyers who need to trust before they pay won't respond well to a chatbot.</span></div>
+          <div class="citem"><span class="ico bad">✕</span><span>Requires Meta Graph API approval — a process that takes weeks, can be denied, and is entirely outside your control.</span></div>
+          <div class="citem"><span class="ico bad">✕</span><span>€4,500+ per year in recurring fees whether the system performs or not. Your lead data lives on their servers.</span></div>
+        </div>
+      </div>
+      <div class="card compare-card zelo-card reveal d2">
+        <div class="badge-top">Zelo</div>
+        <div class="eyebrow"><span class="dot"></span> Human setter amplification</div>
+        <h3>Intelligence layer</h3>
+        <div class="price">One-time</div>
+        <div class="sub">The setter stays human at the moment that closes high-ticket buyers. Zelo handles intelligence, structure, and guided replies around that conversation.</div>
+        <div class="compare-list">
+          <div class="citem"><span class="ico good">✓</span><span>Works with the human-led model that high-ticket buyers already trust. No friction. No automation resistance.</span></div>
+          <div class="citem"><span class="ico good">✓</span><span>Works on any Instagram account today. No API approval. No waiting period. Live on deployment day.</span></div>
+          <div class="citem"><span class="ico good">✓</span><span>One-time setup fee. No subscriptions. Your data stays in your Google Sheet — zero lock-in, zero third-party exposure.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WHAT YOU GET ════════════════════════════════════════════════════ -->
+<section class="section" style="padding-bottom:0">
+  <div class="container">
+    <div class="section-head centered reveal">
+      <div class="eyebrow"><span class="dot"></span> What's included in every deployment</div>
+      <h2>You get a full system, not a login link.</h2>
+      <p>Every Zelo deployment is set up by us, configured for your specific business, and ready for your setters to use that same day.</p>
+    </div>
+    <div class="card deliverables reveal">
+      <h3>What you receive on deployment day</h3>
+      <div class="deliv-grid">
+        <div class="deliv-item"><div class="deliv-ico">🚀</div><div><strong>Fully deployed CRM system</strong><span>Live on your own infrastructure — Google Sheets + Apps Script. We do the entire setup during the onboarding call.</span></div></div>
+        <div class="deliv-item"><div class="deliv-ico">🧠</div><div><strong>AI Chat Analysis — configured and managed</strong><span>API key set up and handled on our side. Setters use it on day one. You never see a configuration screen.</span></div></div>
+        <div class="deliv-item"><div class="deliv-ico">📊</div><div><strong>Coach dashboard + pipeline velocity</strong><span>Live pipeline by stage, setter leaderboard, days-per-stage average — fully operational at launch.</span></div></div>
+        <div class="deliv-item"><div class="deliv-ico">💬</div><div><strong>Objection Library + Gap Finder active</strong><span>Starts building from the first logged lead. After 20 conversations, the data gets genuinely useful.</span></div></div>
+        <div class="deliv-item"><div class="deliv-ico">✍️</div><div><strong>Creator DNA + voice configuration</strong><span>We configure the founder's writing style so AI Reply Suggestions come out in the right tone immediately.</span></div></div>
+        <div class="deliv-item"><div class="deliv-ico">📞</div><div><strong>Onboarding call + team walkthrough</strong><span>90-minute call where we deploy, walk through every feature, and make sure the team can use it independently.</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRICING ════════════════════════════════════════════════════════ -->
+<section class="section" id="pricing">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span> Pricing</div>
+      <h2>One deployment. No monthly nonsense.</h2>
+      <p>The pricing is simple on purpose. You're buying a system that compounds with every conversation logged — not another SaaS login you'll resent opening every month.</p>
+    </div>
+
+
+    <div class="pricing-grid">
+      <div class="card price-card reveal d1">
+        <div class="price-top">
+          <div><h3>Starter</h3><div class="period">Single offer · lean team</div></div>
+          <span class="roi-tag b">Lean</span>
+        </div>
+        <div class="price">€997</div>
+        <div class="price-sub">The full core system for a team running one offer with up to three setters. Intelligent lead logging, pipeline visibility, and the intelligence modules — deployed and live on day one.</div>
+        <div class="features-list">
+          <div class="feat-row"><span class="ico good">✓</span><span>1 offer workspace — fully deployed</span></div>
+          <div class="feat-row"><span class="ico good">✓</span><span>Up to 3 setters</span></div>
+          <div class="feat-row"><span class="ico good">✓</span><span>AI Chat Analysis — managed, zero setup from you</span></div>
+          <div class="feat-row"><span class="ico good">✓</span><span>Gap Finder + Objection Library</span></div>
+          <div class="feat-row"><span class="ico good">✓</span><span>Coach pipeline dashboard</span></div>
+          <div class="feat-row"><span class="ico good">✓</span><span>90-minute onboarding call</span></div>
+        </div>
+        <a class="btn btn-sec" href="https://forms.gle/ZVFkoW9DxqM1F5Co9" target="_blank" style="width:100%;justify-content:center;display:flex">Apply for Starter →</a>
+      </div>
+      <div class="card price-card highlight reveal d2">
+        <div class="badge-top">Most popular</div>
+        <div class="price-top">
+          <div><h3>Growth</h3><div class="period">Multiple offers · operator scale</div></div>
+          <span class="roi-tag g">Recommended</span>
+        </div>
+        <div class="price" style="color:var(--green)">€1,997</div>
+        <div class="price-sub">The complete system — unlimited setters, unlimited offer workspaces, AI voice replies, buyer intelligence, attribution tracking, and the full operational layer. Built for growth operators managing multiple clients.</div>
+        <div class="features-list">
+          <div class="feat-row"><span class="ico good">✓</span><span>Everything in Starter</span></div>
+          <div class="feat-row"><span class="ico good">✓</span><span>Unlimited setters + unlimited offer workspaces</span></div>
+          <div class="feat-row"><span class="ico good">✓</span><span>AI Reply Suggestions in the founder's exact voice</span></div>
+          <div class="feat-row"><span class="ico good">✓</span><span>Buyer vs Non-Buyer Intelligence</span></div>
+          <div class="feat-row"><span class="ico good">✓</span><span>Lead-to-Content Attribution — closes per content piece</span></div>
+          <div class="feat-row"><span class="ico good">✓</span><span>Script Library per pipeline stage</span></div>
+          <div class="feat-row"><span class="ico good">✓</span><span>Pipeline Velocity chart — stuck stage flagged in red</span></div>
+          <div class="feat-row"><span class="ico good">✓</span><span>Priority support + 30-day check-in call</span></div>
+        </div>
+        <a class="btn btn-primary" href="https://forms.gle/ZVFkoW9DxqM1F5Co9" target="_blank" style="width:100%;justify-content:center;display:flex;font-size:15px">Apply for Growth →</a>
+        <div class="guarantee">
+          <strong>60-day performance guarantee.</strong> If you don't recover the setup cost through better setter performance within 60 days, we keep working with you until you do — no time limit, no extra charge.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ════════════════════════════════════════════════════════════ -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-head centered reveal">
+      <div class="eyebrow"><span class="dot"></span> FAQ</div>
+      <h2>Real questions. Straight answers.</h2>
+      <p>The questions growth operators and founders actually ask before deploying.</p>
+    </div>
+    <div class="faq">
+      <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Do I need technical skills to get this set up?<span class="faq-icon">+</span></button><div class="faq-a"><p>None. We handle the entire deployment during your onboarding call. You show up, we set everything up together — Google Sheet, Apps Script, AI configuration, Creator DNA — and you walk away with a live system your setters use that same day.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Where does my lead data actually live?<span class="faq-icon">+</span></button><div class="faq-a"><p>In your own infrastructure — not ours, not a third-party CRM. We have zero access to your leads. Your data lives in a Google Sheet under your account. You control it completely. If you stop using Zelo tomorrow, every lead record is still yours.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">How is this different from AI automation tools?<span class="faq-icon">+</span></button><div class="faq-a"><p>Those tools replace your setters with AI bots — useful for volume at low ticket. Zelo makes your human setters dramatically better. For high-ticket offers (€3k+), buyers want to talk to a real person before committing. Zelo is the intelligence layer around that conversation, not a replacement for it. Also: no Meta API approval needed, no monthly subscription, and your data stays in your workspace.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Is there any ongoing cost after the setup fee?<span class="faq-icon">+</span></button><div class="faq-a"><p>No. The setup fee is one-time. We handle the AI infrastructure on our side — no API key you manage, no monthly subscription, no per-seat pricing. You pay once, the system runs. The only optional add-on is a monthly intelligence review call (€300–500/mo) for teams that want ongoing strategic support — but that's entirely optional.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">My team works in Spanish, Portuguese, or another language. Does it work?<span class="faq-icon">+</span></button><div class="faq-a"><p>Yes, fully. The AI reads DM conversations in any language and extracts all 11 fields. Setters paste raw conversations in Spanish, Portuguese, Czech, or any other language — Zelo handles it natively and returns structured data. No translation needed on the setter's end.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Can I run multiple client offers as a growth operator?<span class="faq-icon">+</span></button><div class="faq-a"><p>Yes — that's exactly what the Growth plan is built for. Each client gets their own fully isolated workspace with their own pipeline, team, and data. Nothing crosses over between clients. You manage all workspaces from a single growth operator dashboard.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">What happens after the onboarding call?<span class="faq-icon">+</span></button><div class="faq-a"><p>Your system is live and your setters can start logging immediately. Growth plan includes a 30-day check-in call to review the first month of data — objection patterns, attribution, buyer intelligence — and help you act on what it's showing you.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">What does the 60-day guarantee actually mean?<span class="faq-icon">+</span></button><div class="faq-a"><p>If you've deployed properly, your team is logging consistently, and you don't feel the system has recovered its cost in measurable performance improvement within 60 days — we keep working with you until it does. That means extra calls, configuration adjustments, and hands-on support with no expiry on that commitment.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FINAL CTA ══════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="card final reveal">
+      <div class="eyebrow" style="display:inline-flex;margin-bottom:16px"><span class="dot"></span> Ready when you are</div>
+      <h2>Your team's DMs already contain<br><em>next month's closes.</em></h2>
+      <p>The intelligence is already there — in every conversation your setters are having right now. Zelo makes it visible, structured, and compounding from deployment day.</p>
+      <div class="btn-row" style="justify-content:center">
+        <a class="btn btn-primary btn-lg" href="https://forms.gle/ZVFkoW9DxqM1F5Co9" target="_blank">Apply for access →</a>
+        <a class="btn btn-sec btn-lg" href="https://mail.google.com/mail/u/0/?fs=1&to=artexak.business@gmail.com&su=Quick+question+about+Zelo&body=Hey+Prokop,+I+saw+your+offer+and...&tf=cm" target="_blank">Ask a question first</a>
+      </div>
+      <div class="final-note">
+        One-time deployment <span>·</span> Live on setup day <span>·</span> 60-day performance guarantee <span>·</span> No monthly fee
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="brand">
+        <div class="brand-mark" style="background:none;border:none;padding:0;width:40px;height:40px;overflow:visible">
+          <img src="logo.png" alt="Zeli" style="width:44px;height:44px;object-fit:contain;margin-top:-2px;margin-left:-2px;border-radius:10px">
+        </div>
+        <div class="brand-text">
+          <strong>Zelo</strong>
+          <span>DM intelligence · setter teams</span>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="https://mail.google.com/mail/u/0/?fs=1&to=artexak.business@gmail.com&su=Contact&tf=cm" target="_blank">Contact</a>
+        <a href="javascript:void(0)" onclick="openLogin(event)">Log in</a>
+      </div>
+      <div style="font-size:12px;color:var(--t3)">© 2025 Zelo. Built for setter teams.</div>
+    </div>
+  </div>
+</footer>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-cta" id="stickyCta">
+  <a class="btn btn-primary" href="https://forms.gle/ZVFkoW9DxqM1F5Co9" target="_blank" style="flex:1;justify-content:center;display:flex">Apply for access →</a>
+  <button class="btn btn-ghost btn-sm" onclick="openLogin(event)" style="flex:none">Log in</button>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- LOGIN MODAL -->
+<div class="overlay" id="loginOverlay">
+  <div class="modal">
+    <button class="close-btn" onclick="closeLogin()">✕</button>
+    <div class="eyebrow" style="font-size:10px">Workspace access</div>
+    <h3>Log in to Zelo</h3>
+    <p>Enter your workspace URL and team PIN to access your dashboard.</p>
+    <div class="err" id="loginErr">That workspace URL doesn't look right. Check and try again.</div>
+    <div class="field">
+      <label>Workspace URL</label>
+      <input type="text" id="wsInput" placeholder="your-workspace-id" autocomplete="off" spellcheck="false"/>
+    </div>
+    <div class="field">
+      <label>Team PIN</label>
+      <input type="password" id="pinInput" placeholder="••••••" autocomplete="current-password"/>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-sec" onclick="closeLogin()">Cancel</button>
+      <button class="btn btn-primary" onclick="doLogin()">Open workspace →</button>
+    </div>
+    <div class="help">
+      Don't have access yet?
+      <a href="https://forms.gle/ZVFkoW9DxqM1F5Co9" target="_blank" onclick="closeLogin()">Apply here →</a><br>
+      Questions? <a href="https://mail.google.com/mail/u/0/?fs=1&to=artexak.business@gmail.com&su=Zelo+question&tf=cm" target="_blank">Email us</a>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── CONFIG ──────────────────────────────────────────────────────────────────
+const APP_URL = 'index.html'; // Replace with deployed CRM URL
+
+// ─── SCROLL REVEAL ───────────────────────────────────────────────────────────
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revealObserver.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ─── NAV SCROLL ──────────────────────────────────────────────────────────────
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+// ─── MOBILE MENU ─────────────────────────────────────────────────────────────
+function toggleMobile() { document.getElementById('mobileMenu').classList.toggle('open'); }
+function closeMobile()  { document.getElementById('mobileMenu').classList.remove('open'); }
+
+// ─── TABS ────────────────────────────────────────────────────────────────────
+function switchTab(idx, btn) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel-' + idx).classList.add('active');
+}
+
+// ─── FAQ ─────────────────────────────────────────────────────────────────────
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+// ─── LOGIN MODAL ─────────────────────────────────────────────────────────────
+function openLogin(e) { if (e) e.preventDefault(); document.getElementById('loginOverlay').classList.add('open'); setTimeout(() => document.getElementById('wsInput').focus(), 80); }
+function closeLogin()  { document.getElementById('loginOverlay').classList.remove('open'); }
+document.getElementById('loginOverlay').addEventListener('click', function(e) { if (e.target === this) closeLogin(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLogin(); });
+function doLogin() {
+  const ws = document.getElementById('wsInput').value.trim();
+  const err = document.getElementById('loginErr');
+  if (!ws) { err.style.display = 'block'; err.textContent = 'Please enter your workspace URL.'; return; }
+  err.style.display = 'none';
+  window.location.href = APP_URL + '?s=' + encodeURIComponent(ws);
+}
+document.getElementById('pinInput').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+
+// ─── WAVE — white until cursor touches CTA, then stays green forever ──────────
+(function(){
+  const wave = document.querySelector('.pain-wave-wrap');
+  if (!wave) return;
+  // restore state if already triggered this session
+  if (sessionStorage.getItem('zg')) {
+    wave.classList.add('wave-hot');
+    document.body.classList.add('green-mode');
+  }
+  const painCtaRow = wave.nextElementSibling;
+  if (!painCtaRow) return;
+  const btns = painCtaRow.querySelectorAll('.btn');
+  function activate() {
+    if (wave.classList.contains('wave-hot')) return; // already locked
+    wave.classList.add('wave-hot');
+    document.body.classList.add('green-mode');
+    sessionStorage.setItem('zg', '1');
+  }
+  btns.forEach(btn => {
+    btn.addEventListener('mouseenter', activate);
+    btn.addEventListener('touchstart', activate, { passive: true });
+  });
+})();
+
+// ─── DYNAMIC ISLAND — nav morphs into island ─────────────────────────────────
+(function(){
+  const wrap  = document.getElementById('islandWrap');
+  const nav   = document.getElementById('nav');
+  const links = wrap.querySelectorAll('.island-link');
+  let shown = false;
+
+  // nav transition set via CSS already, but also set transform-origin for shrink effect
+  nav.style.transformOrigin = 'top center';
+
+  function onScroll(){
+    const y = window.scrollY;
+    if(y > 90 && !shown){
+      shown = true;
+      // nav shrinks toward top-center and fades — looks like it collapses into the island
+      nav.style.opacity = '0';
+      nav.style.transform = 'scaleX(0.18) scaleY(0.55) translateY(-8px)';
+      nav.style.pointerEvents = 'none';
+      nav.style.borderColor = 'transparent';
+      // island fades in from nav center position
+      wrap.classList.add('il-visible');
+    } else if(y <= 90 && shown){
+      shown = false;
+      nav.style.opacity = '1';
+      nav.style.transform = 'scaleX(1) scaleY(1) translateY(0)';
+      nav.style.pointerEvents = '';
+      nav.style.borderColor = '';
+      wrap.classList.remove('il-visible');
+    }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  // active link tracking
+  const sections = ['features','how','roi','compare','pricing','faq'];
+  const secEls = sections.map(id => document.getElementById(id)).filter(Boolean);
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        links.forEach(l => l.classList.toggle('il-active', l.getAttribute('href') === '#'+e.target.id));
+      }
+    });
+  },{rootMargin:'-40% 0px -55% 0px'});
+  secEls.forEach(s => io.observe(s));
+
+})();
+
+
+document.querySelectorAll('.btn').forEach(btn => {
+  // reactive glow tracks cursor position
+  btn.addEventListener('mousemove', e => {
+    const r = btn.getBoundingClientRect();
+    const x = ((e.clientX - r.left) / r.width * 100).toFixed(1);
+    btn.style.setProperty('--mx', x + '%');
+  });
+  // sweep on click
+  btn.addEventListener('click', () => {
+    btn.classList.remove('swept');
+    void btn.offsetWidth; // reflow to restart animation
+    btn.classList.add('swept');
+    btn.addEventListener('animationend', () => btn.classList.remove('swept'), { once: true });
+  });
+});
+</script>
+</body>
+</html>
